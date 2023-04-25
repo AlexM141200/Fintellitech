@@ -1,0 +1,79 @@
+/* Chat window styles */
+#chat-window {
+    height: 400px;
+    overflow-y: scroll;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+/* Message bubble styles */
+.message {
+    display: inline-block;
+    max-width: 70%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+/* User message styles */
+.user-message {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+    text-align: right;
+}
+
+/* Bot message styles */
+.bot-message {
+    background-color: #eee;
+    border: 1px solid #ddd;
+    margin-left: 10px;
+    text-align: left;
+}
+
+/* Input container styles */
+#input-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+/* User input styles */
+#user-input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+/* Send button styles */
+#send-button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+}
+
+/* Stock button styles */
+.stock-button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+/* Hover and active state for buttons */
+.stock-button:hover,
+.stock-button:active {
+    background-color: #0062cc;
+}

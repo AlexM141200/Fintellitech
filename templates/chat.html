@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chatbot</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css', _template='templates') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='app.js', _template='templates') }}"></script>
+</head>
+
+<body>
+    <h1>Chatbot</h1>
+    <div id="chat-window"></div>
+    <div id="input-container">
+        <input id="user-input" type="text" placeholder="Type your message here" />
+        <button id="send-button" type="button">Send</button>
+    </div>
+    <div id="button-container">
+        <button class="stock-button" type="button" value="AAPL">Apple</button>
+        <button class="stock-button" type="button" value="TSLA">Tesla</button>
+        <button class="stock-button" type="button" value="MSFT">Microsoft</button>
+        <button class="stock-button" type="button" value="NVDA">NVIDIA</button>
+        <button class="stock-button" type="button" value="GOOGL">Google</button>
+    </div>
+</body>
+
+</html>
