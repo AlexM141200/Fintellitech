@@ -1,30 +1,22 @@
-from flask import Flask, render_template, url_for, jsonify, request
-import main
-
+from flask import Flask, jsonify, request, render_template
+import long_responses as long
+import chat as chatbot
 
 app = Flask(__name__)
 
 
-@app.route("/")
-def home():
-    return "<p>Hello user!</p>"
+@ app.route('/chat', methods=['POST'])
+def chat():
+    data = request.get_json()
+    message = data['message']
+    response = chatbot.check_all_messages(message.split())
+    return jsonify({'response': response})
 
 
-@app.route("/home")
+@ app.route("/")
 def homepage():
     return render_template('chat.html')
 
 
-@app.route('/chat', methods=['POST'])
-def chat():
-    data = request.get_json()
-    message = data['message']
-
-    response = main.get_response(message)
-    return jsonify({
-        'response': response
-    })
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == '__main__':
+    app.run()
