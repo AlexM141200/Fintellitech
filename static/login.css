@@ -1,0 +1,52 @@
+#login-container {
+    width: 500px;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 50px;
+}
+
+p {
+    font-size: 1.5em;
+    margin-bottom: 25px;
+}
+
+#button-container {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3e8e41;
+}
+
+#login-button {
+    background-color: #008CBA;
+}
+
+#login-button:hover {
+    background-color: #0077A3;
+}
+
+#register-button {
+    background-color: #f44336;
+}
+
+#register-button:hover {
+    background-color: #d32d26;
+}

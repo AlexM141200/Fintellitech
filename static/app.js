@@ -61,4 +61,3 @@ $(function () {
     }
 });
 
-console.log(xhr.responseText);

@@ -6,10 +6,13 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css', _template='templates') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ url_for('static', filename='app.js', _template='templates') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+
 </head>
 
 <body>
     <h1>Chatbot</h1>
+    <button id="logout-button">Log out</button>
     <div id="chat-window"></div>
     <div id="input-container">
         <input id="user-input" type="text" placeholder="Type your message here" />
@@ -22,6 +25,69 @@
         <button class="stock-button" type="button" value="NVDA">NVIDIA</button>
         <button class="stock-button" type="button" value="GOOGL">Google</button>
     </div>
+
+
+    <canvas id="myChart"></canvas>
+
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],  // array of timestamps for each data point
+                datasets: [{
+                    label: 'S&P 500',
+                    data: [],   // array of S&P 500 prices
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        type: 'time',
+                        distribution: 'series',  // or 'category' depending on your preference
+                        title: {
+                            display: true,
+                            text: 'Time'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Price'
+                        }
+                    }
+                }
+            }
+        });
+
+        // function to fetch real-time S&P 500 data from Alpha Vantage API
+        async function fetchSP500Data() {
+            const response = await fetch('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=SPX&interval=5min&apikey=RKH0BMX3MUBVLOY7');
+            const data = await response.json();
+            const timeSeries = data['Time Series (5min)'];
+            const latestTimestamp = Object.keys(timeSeries)[0];
+            const latestPrice = parseFloat(timeSeries[latestTimestamp]['4. close']);
+            const isoTimestamp = new Date(latestTimestamp).toISOString();
+            return { timestamp: isoTimestamp, price: latestPrice };
+        }
+
+
+        // function to update chart with real-time S&P 500 data
+        async function updateChart() {
+            const sp500Data = await fetchSP500Data();
+            chart.data.labels.push(sp500Data.timestamp);
+            chart.data.datasets[0].data.push(sp500Data.price);
+            chart.update();
+        }
+
+        // example usage: update chart with new data every 5 minutes
+        setInterval(updateChart, 5 * 60 * 1000);
+    </script>
+
 </body>
 
 </html>

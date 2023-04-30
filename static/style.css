@@ -77,3 +77,17 @@
 .stock-button:active {
     background-color: #0062cc;
 }
+
+#logout-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    margin-right: 10px;
+}
