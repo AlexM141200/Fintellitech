@@ -8,7 +8,7 @@ import publicperception as psp
 ALPHA_VANTAGE_API_KEY = 'RKH0BMX3MUBVLOY7'
 ALPHA_VANTAGE_API_ENDPOINT = 'https://www.alphavantage.co/query'
 
-companies = ['Apple', 'Amazon', 'Tesla']
+companies = ['Apple', 'Amazon', 'Tesla', 'IBM', 'Sony']
 
 
 def get_stock_data(symbol):

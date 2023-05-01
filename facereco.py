@@ -178,7 +178,7 @@ def register():
 			cam.release()
 			cv2.destroyAllWindows()
 			break
-	raiseFrame(loginFrame)
+
 	
 #Passing in the model
 def login():
@@ -190,63 +190,11 @@ def login():
 		messagebox.showerror("Alert","Face Not Recognised")
 		return
 	loggedInUser.set(user[0])
-	raiseFrame(userMenuFrame)
+
 	
 	
 	
-	
 
-#Tkinter
-root = tk.Tk()
-root.title("Face Login Example")
-#Frames
-loginFrame=tk.Frame(root)
-regFrame=tk.Frame(root)
-userMenuFrame = tk.Frame(root)
-
-#Define Frame List
-frameList=[loginFrame,regFrame,userMenuFrame]
-#Configure all Frames
-for frame in frameList:
-	frame.grid(row=0,column=0, sticky='news')
-	frame.configure(bg='white')
-	
-def raiseFrame(frame):
-	frame.tkraise()
-
-def regFrameRaiseFrame():
-	raiseFrame(regFrame)
-def logFrameRaiseFrame():
-	raiseFrame(loginFrame)
-#Tkinter Vars
-#Stores user's name when registering
-name = tk.StringVar()
-#Stores user's name when they have logged in
-loggedInUser = tk.StringVar()
-
-
-tk.Label(loginFrame,text="Face Recognition",font=("Courier", 60),bg="white").grid(row=1,column=1,columnspan=5)
-loginButton = tk.Button(loginFrame,text="Login",bg="white",font=("Arial", 30),command=login)
-loginButton.grid(row=2,column=5)
-regButton = tk.Button(loginFrame,text="Register",command=regFrameRaiseFrame,bg="white",font=("Arial", 30))
-regButton.grid(row=2,column=1)
-
-tk.Label(regFrame,text="Register",font=("Courier",60),bg="white").grid(row=1,column=1,columnspan=5)
-tk.Label(regFrame,text="Name: ",font=("Arial",30),bg="white").grid(row=2,column=1)
-nameEntry=tk.Entry(regFrame,textvariable=name,font=("Arial",30)).grid(row=2,column=2)
-
-registerButton = tk.Button(regFrame,text="Register",command=register,bg="white",font=("Arial", 30))
-registerButton.grid(row=3,column=2)
-
-tk.Label(userMenuFrame,text="Hello, ",font=("Courier",60),bg="white").grid(row=1,column=1)
-tk.Label(userMenuFrame,textvariable=loggedInUser,font=("Courier",60),bg="white",fg="red").grid(row=1,column=2)
-tk.Button(userMenuFrame,text="Back",font=("Arial", 30),command=logFrameRaiseFrame).grid(row=2,column=1)
-
-
-#Load Faces
-dfu = Dlib_Face_Unlock()
-raiseFrame(loginFrame)
-root.mainloop()
 
 
 
