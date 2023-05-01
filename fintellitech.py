@@ -35,6 +35,8 @@ def chat():
 # dfu = face.Dlib_Face_Unlock()
 
 # Route for the face recognition functionality
+
+
 @app.route('/authenticate', methods=['POST'])
 def authenticate():
     user = dfu.ID()
@@ -53,21 +55,20 @@ def login():
 def register():
     if request.method == 'POST':
         name = request.form['name']
-        #Create images folder
+        # Create images folder
         if not os.path.exists("images"):
             os.makedirs("images")
-        #Create folder of person (IF NOT EXISTS) in the images folder
+        # Create folder of person (IF NOT EXISTS) in the images folder
         Path("images/"+name).mkdir(parents=True, exist_ok=True)
-        #Obtain the number of photos already in the folder
+        # Obtain the number of photos already in the folder
         numberOfFile = len([filename for filename in os.listdir('images/' + name)
                             if os.path.isfile(os.path.join('images/' + name, filename))])
-        #Add 1 because we start at 1
-        numberOfFile+=1
-        #Take a photo code
+        # Add 1 because we start at 1
+        numberOfFile += 1
+        # Take a photo code
         cam = cv2.VideoCapture(0)
 
         cv2.namedWindow("test")
-
 
         while True:
             ret, frame = cam.read()
@@ -87,7 +88,8 @@ def register():
                 img_name = str(numberOfFile)+".png"
                 cv2.imwrite(img_name, frame)
                 print("{} written!".format(img_name))
-                os.replace(str(numberOfFile)+".png", "images/"+name.lower()+"/"+str(numberOfFile)+".png")
+                os.replace(str(numberOfFile)+".png", "images/" +
+                           name.lower()+"/"+str(numberOfFile)+".png")
                 cam.release()
                 cv2.destroyAllWindows()
                 break
@@ -97,8 +99,12 @@ def register():
         return render_template('register.html')
 
 
-
 @ app.route("/")
+def landingpage():
+    return render_template('landingPage.html')
+
+
+@ app.route("/chatbot")
 def homepage():
     user = request.args.get('user', '')
     return render_template('chat.html', user=user)
