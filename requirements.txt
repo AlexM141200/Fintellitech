@@ -1,0 +1,10 @@
+requests
+pandas
+textblob
+flask
+opencv-python
+pathlib
+face-recognition
+numpy
+tk
+glob
