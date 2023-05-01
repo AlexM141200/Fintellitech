@@ -10,15 +10,26 @@
 
 </head>
 
-<body>
-    <h1 style="text-transform: capitalize;"> Welcome {{ user }} to the chat! </h1>
-    <h1>Chatbot</h1>
-    <button id="logout-button">Log out</button>
-    <div id="chat-window"></div>
-    <div id="input-container">
-        <input id="user-input" type="text" placeholder="Type your message here" />
-        <button id="send-button" type="button">Send</button>
+<h1 style="text-transform: capitalize;"> Welcome {{ user }} to the Chatbot! </h1>
+<button id="logout-button">Log out</button>
+<div id="chat-window"></div>
+<div id="input-container">
+    <input id="user-input" type="text" placeholder="Type your message here" />
+    <button id="send-button" type="button">Send</button>
+</div>
+<div id="button-container">
+    <h2>What is your risk tolerance?</h2>
+    <button class="risk-button" type="button" value="high">High</button>
+    <button class="risk-button" type="button" value="low">Low</button>
+    <h2>Get Stock Prices</h2>
+    <div id="button-container">
+        <button class="price-button" type="button" value="AAPL">Apple</button>
+        <button class="price-button" type="button" value="TSLA">Tesla</button>
+        <button class="price-button" type="button" value="MSFT">Microsoft</button>
+        <button class="price-button" type="button" value="NVDA">NVIDIA</button>
+        <button class="price-button" type="button" value="GOOGL">Google</button>
     </div>
+    <h2>Get Changes in Stock Prices</h2>
     <div id="button-container">
         <button class="stock-button" type="button" value="AAPL">Apple</button>
         <button class="stock-button" type="button" value="TSLA">Tesla</button>
@@ -27,68 +38,43 @@
         <button class="stock-button" type="button" value="GOOGL">Google</button>
     </div>
 
-
-    <canvas id="myChart"></canvas>
-
-    <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: [],  // array of timestamps for each data point
-                datasets: [{
-                    label: 'S&P 500',
-                    data: [],   // array of S&P 500 prices
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1,
-                    fill: false
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    x: {
-                        type: 'time',
-                        distribution: 'series',  // or 'category' depending on your preference
-                        title: {
-                            display: true,
-                            text: 'Time'
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Price'
-                        }
-                    }
-                }
-            }
-        });
-
-        // function to fetch real-time S&P 500 data from Alpha Vantage API
-        async function fetchSP500Data() {
-            const response = await fetch('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=SPX&interval=5min&apikey=RKH0BMX3MUBVLOY7');
-            const data = await response.json();
-            const timeSeries = data['Time Series (5min)'];
-            const latestTimestamp = Object.keys(timeSeries)[0];
-            const latestPrice = parseFloat(timeSeries[latestTimestamp]['4. close']);
-            const isoTimestamp = new Date(latestTimestamp).toISOString();
-            return { timestamp: isoTimestamp, price: latestPrice };
-        }
-
-
-        // function to update chart with real-time S&P 500 data
-        async function updateChart() {
-            const sp500Data = await fetchSP500Data();
-            chart.data.labels.push(sp500Data.timestamp);
-            chart.data.datasets[0].data.push(sp500Data.price);
-            chart.update();
-        }
-
-        // example usage: update chart with new data every 5 minutes
-        setInterval(updateChart, 5 * 60 * 1000);
-    </script>
-
+    <h2>Find Out the Public Perception of Companies</h2>
+    <div id="button-container">
+        <button class="perception-button" type="button" value="apple">Apple</button>
+        <button class="perception-button" type="button" value="tesla">Tesla</button>
+        <button class="perception-button" type="button" value="microsoft">Microsoft</button>
+        <button class="perception-button" type="button" value="nvidia">NVIDIA</button>
+        <button class="perception-button" type="button" value="google">Google</button>
+        <h2>What does the perception analysis mean?</h2>
+        <table>
+            <tr>
+                <th>Public Perception</th>
+                <th>Analysis</th>
+            </tr>
+            <tr>
+                <td>Positive</td>
+                <td>A high positive public perception is a good indication that this company has not had much negative
+                    press
+                    recently. This is a good indication that it may be suitable for short term investing, though you
+                    should
+                    conduct further research!</td>
+            </tr>
+            <tr>
+                <td>Negative</td>
+                <td>A high negative public perception indicates that this company has had larger amounts of negative
+                    press,
+                    and should be avoided, as this may negatively affect its stock prices.</td>
+            </tr>
+            <tr>
+                <td>Neutral</td>
+                <td>Neutral negative perception is neither good nor bad, however, it is an indication that the companies
+                    are
+                    still relevant as they are being brought up in the news.</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</div>
 </body>
 
 </html>

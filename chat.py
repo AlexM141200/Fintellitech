@@ -8,7 +8,8 @@ import publicperception as psp
 ALPHA_VANTAGE_API_KEY = 'RKH0BMX3MUBVLOY7'
 ALPHA_VANTAGE_API_ENDPOINT = 'https://www.alphavantage.co/query'
 
-companies = ['Apple', 'Amazon', 'Tesla', 'IBM', 'Sony']
+companies = ['Apple', 'Amazon', 'Tesla', 'IBM', 'Sony', 'Microsoft', 'Google', 'Facebook', 'Netflix', 'Disney', 'Intel', 'AMD', 'Nvidia', 'PayPal', 'Visa', 'Mastercard', 'Starbucks', 'McDonalds', 'Walmart', 'Target', 'Costco',
+             'Nike', 'Coca-Cola', 'Pepsi', 'AT&T', 'Verizon', 'T-Mobile', 'Sprint', 'Comcast', 'Twitch', 'TikTok', 'Snapchat', 'Twitter', 'Uber', 'Lyft', 'Airbnb', 'Spotify', 'Dropbox', 'Ebay', 'Etsy', 'Reddit', 'Tinder', 'Zoom']
 
 
 def get_stock_data(symbol):
@@ -32,25 +33,40 @@ def get_stock_data(symbol):
     }
 
 
+def get_stock_price(symbol):
+    params = {
+        'function': 'GLOBAL_QUOTE',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+    }
+    response = requests.get(ALPHA_VANTAGE_API_ENDPOINT, params=params)
+    data = response.json()
+
+    if 'Global Quote' not in data:
+        return None
+
+    stock_data = data['Global Quote']
+    price = float(stock_data['05. price'])
+    return {
+        'symbol': symbol.upper(),
+        'price': price,
+    }
+
+
 def message_probability(user_message, recognised_words, single_response=False, required_words=[]):
     message_certainty = 0
     has_required_words = True
 
-    # Counts how many words are present in each predefined message
     for word in user_message:
         if word in recognised_words:
             message_certainty += 1
 
-    # Calculates the percent of recognised words in a user message
     percentage = float(message_certainty) / float(len(recognised_words))
 
-    # Checks that the required words are in the string
     for word in required_words:
         if word not in user_message:
             has_required_words = False
             break
-
-    # Must either have the required words, or be a single response
     if has_required_words or single_response:
         return int(percentage * 100)
     else:
@@ -78,6 +94,10 @@ def check_all_messages(message):
              required_words=['code', 'palace'])
     response('The markets are doing positively recently!', [
              'how', 'markets', 'look', 'positive', 'in'], required_words=['markets'])
+    response('If you have a high risk tolerance, it may be better to look at investing in options with high growth potential, such as cryptocurrencies!', [
+             'i', 'have', 'a', 'high', 'risk', 'tolerance'], required_words=['high', 'risk', 'tolerance'])
+    response('If you have a low risk tolerance, it may be better to look at stable investments, such as bonds or mutual funds!', [
+             'i', 'have', 'a', 'high', 'risk', 'tolerance'], required_words=['low', 'risk', 'tolerance'])
 
     # Get stock data based on user input
     split_message = [word.lower() for word in message]
@@ -87,7 +107,7 @@ def check_all_messages(message):
             if company.lower() in split_message:
                 sentiment = psp.get_public_perception(company)
                 print(company)
-                response(f"The public perception of {company} is {sentiment}.", [
+                response(f"{sentiment}.", [
                     'what', 'is', 'public', 'perception', 'of'], required_words=[company.lower()])
 
     if "how" in split_message and "has" in split_message and "been" in split_message:
@@ -102,6 +122,19 @@ def check_all_messages(message):
             else:
                 response(f"Sorry, I couldn't find any data for {stock_data}.", [
                          'how', 'has', 'been', 'doing'], required_words=[split_message[stock_index]])
+
+    if "what" in split_message and "is" in split_message and "price" in split_message:
+        stock_index = split_message.index(
+            "price") - 1 if "price" in split_message else -1
+        if stock_index != -1 and len(split_message) > stock_index:
+
+            stock_data = get_stock_price(split_message[stock_index])
+            if stock_data is not None:
+                response(f"{stock_data['symbol']} is currently {stock_data['price']} today.", [
+                         'what', 'is', 'price'], required_words=[split_message[stock_index]])
+            else:
+                response(f"Sorry, I couldn't find any data for {stock_data}.", [
+                         'what', 'is', 'price'], required_words=[split_message[stock_index]])
 
     best_match = max(highest_prob_list, key=highest_prob_list.get)
 

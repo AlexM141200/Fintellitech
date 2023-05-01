@@ -1,0 +1,98 @@
+ADM - Admiral Group
+AAL - Anglo American
+ANTO - Antofagasta
+AHT - Ashtead Group
+ABF - Associated British Foods
+AZN - AstraZeneca
+AUTO - Auto Trader Group
+AVST - Avast
+AVV - Aveva
+BA - BAE Systems
+BARC - Barclays
+BDEV - Barratt Developments
+BHP - BHP Group
+BP - BP
+BATS - British American Tobacco
+BLND - British Land Company
+BT.A - BT Group
+BNZL - Bunzl
+BRBY - Burberry Group
+CCL - Carnival Corporation & plc
+CNA - Centrica
+CCH - Coca-Cola HBC AG
+CPG - Compass Group
+CRH - CRH plc
+CRDA - Croda International
+DCC - DCC plc
+DGE - Diageo
+DLG - Direct Line Group
+SMDS - DS Smith
+EZJ - easyJet
+ENT - Entain
+EVR - Evraz
+EXPN - Experian
+FERG - Ferguson plc
+FLTR - Flutter Entertainment
+FRES - Fresnillo plc
+GSK - GlaxoSmithKline
+GLEN - Glencore
+HLMA - Halma
+HL - Hargreaves Lansdown
+HIK - Hikma Pharmaceuticals
+HSX - Hiscox
+HSBA - HSBC
+IMB - Imperial Brands
+INF - Informa
+IHG - InterContinental Hotels Group
+IAG - International Airlines Group
+ITRK - Intertek Group
+ITV - ITV plc
+JMAT - Johnson Matthey
+JET - Just Eat Takeaway.com
+KGF - Kingfisher plc
+LAND - Land Securities Group
+LGEN - Legal & General
+LLOY - Lloyds Banking Group
+LSEG - London Stock Exchange Group
+MNG - M&G plc
+MRO - Melrose Industries
+MNDI - Mondi
+MRW - Morrisons
+NG - National Grid plc
+NXT - Next plc
+OCDO - Ocado Group
+PSON - Pearson plc
+PSN - Persimmon plc
+PHNX - Phoenix Group
+POLY - Polymetal International
+PRU - Prudential plc
+RB - Reckitt Benckiser
+REL - RELX plc
+RTO - Rentokil Initial
+RIO - Rio Tinto Group
+RR - Rolls-Royce Holdings
+RDSA - Royal Dutch Shell
+RSA - RSA Insurance Group
+SGE - Sage Group
+SBRY - Sainsbury's
+SMT - Scottish Mortgage Investment Trust
+SGRO - Segro
+SVT - Severn Trent
+SN - Smith & Nephew
+SMDS - Smiths Group
+SKG - Smurfit Kappa
+SXS - Spirax-Sarco Engineering
+SSE - SSE plc
+STAN - Standard Chartered
+SLA - Standard Life Aberdeen
+TW - Taylor Wimpey
+TSCO - Tesco
+ULVR - Unilever
+UU - United Utilities
+VOD - Vodafone Group
+WEIR - Weir Group
+WTB - Whitbread
+WPP - WPP plc
+III - 3i
+3IN - 3i Infrastructure
+888 - 888 Holdings

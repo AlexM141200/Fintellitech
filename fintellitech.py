@@ -1,19 +1,8 @@
 from flask import Flask, jsonify, request, render_template
-import long_responses as long
 import chat as chatbot
-
-import face_recognition
 import cv2
-import pickle
 import os
-import numpy as np
-
-import tkinter as tk
-from tkinter import messagebox
-import dlib
-
 from pathlib import Path
-import glob
 from facereco import Dlib_Face_Unlock
 
 
